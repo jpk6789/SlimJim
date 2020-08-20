@@ -18,7 +18,7 @@ namespace SlimJim.Infrastructure
         private string[] _supportedExtensions = new[] { ".csproj", ".vbproj" };
 
 
-        public ProjectFileFinder()
+		public ProjectFileFinder()
 		{
 			ignorePatterns = new List<Regex>();
 			IgnorePatterns(@"^\.svn$", @"^\.hg$", @"^\.git$", "^bin$", "^obj$", "ReSharper");
@@ -31,7 +31,7 @@ namespace SlimJim.Infrastructure
 			var root = new DirectoryInfo(startPath);
 			var projectFiles = GetProjectFiles(root);
 
-            return projectFiles;
+			return projectFiles;
 		}
 
 		private List<FileInfo> GetProjectFiles(DirectoryInfo directory)
@@ -48,19 +48,19 @@ namespace SlimJim.Infrastructure
 
 		private void SearchDirectoryForProjects(DirectoryInfo directory, List<FileInfo> files)
 		{
-            FileInfo[] projects = directory
-                                    .GetFiles("*.*", SearchOption.AllDirectories)
-                                    .Where(f => _supportedExtensions.Contains(f.Extension, StringComparer.OrdinalIgnoreCase))
-                                    .Where(f => !PathIsIgnored(f.Name))
+			FileInfo[] projects = directory
+									.GetFiles("*.*", SearchOption.AllDirectories)
+									.Where(f => _supportedExtensions.Contains(f.Extension, StringComparer.OrdinalIgnoreCase))
+									.Where(f => !PathIsIgnored(f.Name))
 									.ToArray();
-            if (projects.Length > 0)
+			if (projects.Length > 0)
 			{
 				AddProjectFile(projects, files);
 			}
-            else
-            {
-                RecurseChildDirectories(directory, files);
-            }
+			else
+			{
+				RecurseChildDirectories(directory, files);
+			}
 		}
 
 		private void RecurseChildDirectories(DirectoryInfo directory, List<FileInfo> files)

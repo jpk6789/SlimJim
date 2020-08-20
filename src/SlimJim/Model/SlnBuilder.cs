@@ -107,14 +107,14 @@ namespace SlimJim.Model
 
 			var closest = versions.Where(v => v.Key <= myVersion).OrderByDescending(v => v.Key).FirstOrDefault();
 
-		    if (closest.Value != null)
-		    {
-                Log.InfoFormat("Found multiple projects with AssemblyName {0}: {1} and chose {2}", assemblyName, string.Join(", ", matches.Select(m => m.Path)), closest.Value.Path);
-                return closest.Value;
-		    }
+			if (closest.Value != null)
+			{
+				Log.InfoFormat("Found multiple projects with AssemblyName {0}: {1} and chose {2}", assemblyName, string.Join(", ", matches.Select(m => m.Path)), closest.Value.Path);
+				return closest.Value;
+			}
 
-            Log.WarnFormat("Found multiple projects with AssemblyName {0}: {1} and none have compatible TargetFrameworkVersion property. Choosing {2}", assemblyName, string.Join(", ", matches.Select(m => m.Path)), matches.First());
-		    return matches.First();
+			Log.WarnFormat("Found multiple projects with AssemblyName {0}: {1} and none have compatible TargetFrameworkVersion property. Choosing {2}", assemblyName, string.Join(", ", matches.Select(m => m.Path)), matches.First());
+			return matches.First();
 		}
 
 		private void AddProjectAndReferences(CsProj project)

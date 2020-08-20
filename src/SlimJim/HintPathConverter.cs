@@ -5,9 +5,9 @@ using System.Xml.XPath;
 
 namespace SlimJim
 {
-    using Model;
+	using Model;
 
-    public class HintPathConverter : CsProjConverter
+	public class HintPathConverter : CsProjConverter
 	{
 		private const string NuGetPackagesDirectoryName = @"packages\";
 		private enum Mode { Convert, Restore }

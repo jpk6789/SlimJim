@@ -9,9 +9,9 @@ using log4net.Layout;
 
 namespace SlimJim
 {
-    using Infrastructure;
+	using Infrastructure;
 
-    public class SlimJimMain
+	public class SlimJimMain
 	{
 		public static void Main(string[] args)
 		{

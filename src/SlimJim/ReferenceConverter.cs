@@ -6,9 +6,9 @@ using System.Xml.XPath;
 
 namespace SlimJim
 {
-    using Model;
+	using Model;
 
-    public class ReferenceConverter : CsProjConverter
+	public class ReferenceConverter : CsProjConverter
 	{
 		public void ConvertToProjectReferences(Sln solution)
 		{
@@ -84,5 +84,5 @@ namespace SlimJim
 			doc.Save(project.Path);
 		}
 
-    }
+	}
 }

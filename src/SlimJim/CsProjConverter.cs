@@ -6,10 +6,10 @@ using log4net;
 
 namespace SlimJim
 {
-    using Model;
+	using Model;
 
 
-    public abstract class CsProjConverter
+	public abstract class CsProjConverter
 	{
 		protected const string MSBuildXmlNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 		protected readonly ILog log;

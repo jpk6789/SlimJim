@@ -56,9 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\build\VersionInfo.cs">
-      <Link>VersionInfo.cs</Link>
-    </Compile>
     <Compile Include="HintPathConverterTests.cs" />
     <Compile Include="Infrastructure\ArgsOptionsBuilderTests.cs" />
     <Compile Include="Infrastructure\CsProjReaderTests.cs" />

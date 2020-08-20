@@ -94,7 +94,7 @@ namespace SlimJim.Model
 		private string GetLastSegmentNameOfProjectsRootDirectory()
 		{
 			var dir = new DirectoryInfo(ProjectsRootDirectory);
-            
+
 			if (string.IsNullOrEmpty(dir.Name) || dir.FullName == dir.Root.FullName)
 			{
 				return DefaultSolutionName;

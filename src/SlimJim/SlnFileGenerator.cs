@@ -7,10 +7,10 @@ using log4net;
 
 namespace SlimJim
 {
-    using Infrastructure;
-    using Model;
+	using Infrastructure;
+	using Model;
 
-    public class SlnFileGenerator
+	public class SlnFileGenerator
 	{
 		private static readonly ILog Log = LogManager.GetLogger(typeof(SlnFileGenerator));
 		public CsProjRepository ProjectRepository { get; set; }
