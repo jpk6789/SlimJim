@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimJim", "SlimJim\SlimJim.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimJim.Test", "SlimJim.Test\SlimJim.Test.csproj", "{F28F7DCF-30E4-40DF-9FCF-FFFA17ECBA7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimJim.MSTest", "SlimJim.MSTest\SlimJim.MSTest.csproj", "{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,18 @@ Global
 		{F28F7DCF-30E4-40DF-9FCF-FFFA17ECBA7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F28F7DCF-30E4-40DF-9FCF-FFFA17ECBA7F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F28F7DCF-30E4-40DF-9FCF-FFFA17ECBA7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Debug|x86.Build.0 = Debug|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Release|x86.ActiveCfg = Release|Any CPU
+		{C2299A9D-5EB7-4129-9C3C-84FE85EC2D44}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
