@@ -25,6 +25,9 @@ namespace SlimJim.Infrastructure
 
 			var assemblyName = properties.Element(Ns + "AssemblyName");
 
+			if (assemblyName == null)
+				assemblyName = properties.Element(Ns + "RootNamespace");
+
 			if (assemblyName == null) return null;
 
 			return new CsProj

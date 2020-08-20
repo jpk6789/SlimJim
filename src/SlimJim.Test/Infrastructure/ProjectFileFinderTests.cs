@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using SlimJim.Infrastructure;
+using SlimJim.Model;
 using SlimJim.Test.SampleFiles;
 using System.Linq;
 
@@ -20,10 +21,10 @@ namespace SlimJim.Test.Infrastructure
 			finder = new ProjectFileFinder();
 		}
 
-		[Test]
-		public void FindsOneProjectInFolderWithCsproj()
-		{
-			projectFiles = finder.FindAllProjectFiles(Path.Combine(SampleFileSystemPath, @"MyProject"));
+        [Test]
+        public void FindsOneProjectInFolderWithCsproj()
+        {
+            projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, Path.Combine(SampleFileSystemPath, @"MyProject"));
 
 			AssertFilesMatching(new[]
 				{
@@ -34,7 +35,7 @@ namespace SlimJim.Test.Infrastructure
 		[Test]
 		public void ReturnsFileInfosForEachProjectInFileSystem()
 		{
-			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
+			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{
@@ -51,7 +52,7 @@ namespace SlimJim.Test.Infrastructure
 		public void IgnoresRelativePath()
 		{
 			finder.IgnorePatterns("Their");
-			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
+			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{
@@ -65,7 +66,7 @@ namespace SlimJim.Test.Infrastructure
 		public void IgnoresFileName()
 		{
 			finder.IgnorePatterns("TheirProject3.csproj");
-			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
+			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{
@@ -81,7 +82,7 @@ namespace SlimJim.Test.Infrastructure
 		public void IgnoresRelativePathWithDifferentCase()
 		{
 			finder.IgnorePatterns("ThEiR");
-			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
+			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{

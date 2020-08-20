@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 using log4net;
-
+using SlimJim.Model;
 
 namespace SlimJim.Infrastructure
 {
@@ -15,7 +15,7 @@ namespace SlimJim.Infrastructure
 		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 		private readonly List<Regex> ignorePatterns;
 
-        private string[] _supportedExtensions = new[] { ".csproj", ".vbproj" };
+		private string[] _supportedExtensions;
 
 
 		public ProjectFileFinder()
@@ -24,9 +24,20 @@ namespace SlimJim.Infrastructure
 			IgnorePatterns(@"^\.svn$", @"^\.hg$", @"^\.git$", "^bin$", "^obj$", "ReSharper");
 		}
 
-		public virtual List<FileInfo> FindAllProjectFiles(string startPath)
+		public virtual List<FileInfo> FindAllProjectFiles(ProjectFileType[] projectTypes, string startPath)
 		{
-			Log.InfoFormat($"Searching for '{string.Join(",", _supportedExtensions)}' files at '{startPath}'.");
+			if (projectTypes?.Length > 0)
+			{
+				_supportedExtensions = projectTypes.Select(c => c.FileExtention).ToArray();
+				Log.InfoFormat($"The following project types are selected: '{string.Join(", ", projectTypes.Select(c => c.Name).ToArray())}'.");
+			}
+			else
+			{
+				_supportedExtensions = ProjectFileType.AllExtentions.Select(c => c.FileExtention).ToArray();
+				Log.InfoFormat($"No valid project types selected. Use default ones.");
+			}
+
+			Log.InfoFormat($"Searching for '{string.Join(", ", _supportedExtensions)}' files at '{startPath}'.");
 
 			var root = new DirectoryInfo(startPath);
 			var projectFiles = GetProjectFiles(root);

@@ -13,12 +13,14 @@ namespace SlimJim.Model
 		private string projectsRootDirectory;
 		private string solutionName;
 		private string slnOutputPath;
+		private readonly List<ProjectFileType> projectTypes;
 		private readonly List<string> additionalSearchPaths;
 		private readonly List<string> ignoreDirectoryPatterns;
 
 		public SlnGenerationOptions(string workingDirectory)
 		{
 			ProjectsRootDirectory = workingDirectory;
+			projectTypes = new List<ProjectFileType>();
 			additionalSearchPaths = new List<string>();
 			ignoreDirectoryPatterns = new List<string>();
 			TargetProjectNames = new List<string>();
@@ -48,6 +50,14 @@ namespace SlimJim.Model
 		public bool OpenInVisualStudio { get; set; }
 		public Level LoggingThreshold { get; set; }
 
+		public ProjectFileType[] ProjectTypes
+		{
+			get
+			{
+				return projectTypes.Distinct().ToArray();
+			}
+		}
+
 		public List<string> AdditionalSearchPaths
 		{
 			get
@@ -55,6 +65,12 @@ namespace SlimJim.Model
 				return additionalSearchPaths.ConvertAll(ResolvePath);
 			}
 		}
+
+		public List<string> IgnoreDirectoryPatterns
+		{
+			get { return ignoreDirectoryPatterns; }
+		}
+
 
 		private string ResolvePath(string p)
 		{
@@ -112,9 +128,10 @@ namespace SlimJim.Model
 			}
 		}
 
-		public List<string> IgnoreDirectoryPatterns
+		public void AddProjectFileTypes(ProjectFileType includedProjectType)
 		{
-			get { return ignoreDirectoryPatterns; }
+			if (includedProjectType != null)
+				projectTypes.Add(includedProjectType);
 		}
 
 		public void AddAdditionalSearchPaths(params string[] searchPaths)

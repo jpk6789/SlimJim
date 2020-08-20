@@ -35,11 +35,11 @@ namespace SlimJim.Infrastructure
 
 		private List<FileInfo> FindAllProjectFiles(SlnGenerationOptions options)
 		{
-			List<FileInfo> files = Finder.FindAllProjectFiles(options.ProjectsRootDirectory);
+			List<FileInfo> files = Finder.FindAllProjectFiles(options.ProjectTypes, options.ProjectsRootDirectory);
 
 			foreach (string path in options.AdditionalSearchPaths)
 			{
-				files.AddRange(Finder.FindAllProjectFiles(path));
+				files.AddRange(Finder.FindAllProjectFiles(options.ProjectTypes, path));
 			}
 
 			return files;

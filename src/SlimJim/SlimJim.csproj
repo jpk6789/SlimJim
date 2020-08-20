@@ -76,6 +76,7 @@
     <Compile Include="Infrastructure\VisualStudioIntegration.cs" />
     <Compile Include="Infrastructure\XElementExtensions.cs" />
     <Compile Include="Model\Folder.cs" />
+    <Compile Include="Model\ProjectFileType.cs" />
     <Compile Include="Model\SlnGenerationMode.cs" />
     <Compile Include="Model\CsProj.cs" />
     <Compile Include="Infrastructure\CsProjReader.cs" />

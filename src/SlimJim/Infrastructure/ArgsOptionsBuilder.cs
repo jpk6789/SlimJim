@@ -44,6 +44,8 @@ namespace SlimJim.Infrastructure
 									v => options.SlnOutputPath = v },
 								{ "version=", "Visual Studio {VERSION} compatibility (2008, 2010, 2012, 2013, 2015, 2017, 2019, default)",
 									v => options.VisualStudioVersion = TryParseVersionNumber(v) },
+								{ "p|projecttype=", "Project file {TYPE} ('.csproj', '.vbproj', '.vcxproj', default)",
+									v => options.AddProjectFileTypes(TryParseProjectType(v)) },
 								{ "n|name=", "alternate {NAME} for solution file", 
 									v => options.SolutionName = v},
 								{ "m|minimal", "skip all afferent assembly references (included by default)",
@@ -112,6 +114,18 @@ namespace SlimJim.Infrastructure
 			}
 
 			return parsedVersion;
+		}
+
+		private ProjectFileType TryParseProjectType(string projectType)
+		{
+			ProjectFileType parsedProjectType = ProjectFileType.ParseTypeString(projectType);
+
+			if (parsedProjectType == null)
+			{
+				Log.WarnFormat($"The following project type could not be parsed: '{projectType}'");
+			}
+
+			return parsedProjectType;
 		}
 
 		public event Action<string> ParseError;
