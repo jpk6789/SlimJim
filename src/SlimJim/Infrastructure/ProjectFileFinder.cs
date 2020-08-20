@@ -42,7 +42,11 @@ namespace SlimJim.Infrastructure
 			Log.InfoFormat($"Searching for '{string.Join(", ", _supportedExtensions)}' files at '{startPath}'.");
 
 			var root = new DirectoryInfo(startPath);
-			var projectFiles = GetProjectFiles(root);
+			var projectFiles = new List<FileInfo>();
+			if (root.Exists)
+				projectFiles = GetProjectFiles(root);
+			else
+				Log.WarnFormat($"Defined path '{root}' does not exist.");
 
 			return projectFiles;
 		}
