@@ -24,7 +24,8 @@ namespace SlimJim.Test.Infrastructure
         [TestMethod]
         public void FindsOneProjectInFolderWithCsproj()
         {
-            projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, Path.Combine(SampleFileSystemPath, @"MyProject"));
+			finder.SetProjectTypes(new[] { ProjectFileType.CSPROJ });
+			projectFiles = finder.FindAllProjectFiles(Path.Combine(SampleFileSystemPath, @"MyProject"));
 
 			AssertFilesMatching(new[]
 				{
@@ -35,7 +36,8 @@ namespace SlimJim.Test.Infrastructure
 		[TestMethod]
 		public void ReturnsFileInfosForEachProjectInFileSystem()
 		{
-			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
+			finder.SetProjectTypes(new[] { ProjectFileType.CSPROJ });
+			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{
@@ -52,7 +54,8 @@ namespace SlimJim.Test.Infrastructure
 		public void IgnoresRelativePath()
 		{
 			finder.IgnorePatterns("Their");
-			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
+			finder.SetProjectTypes(new[] { ProjectFileType.CSPROJ });
+			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{
@@ -66,7 +69,8 @@ namespace SlimJim.Test.Infrastructure
 		public void IgnoresFileName()
 		{
 			finder.IgnorePatterns("TheirProject3.csproj");
-			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
+			finder.SetProjectTypes(new[] { ProjectFileType.CSPROJ });
+			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{
@@ -82,7 +86,8 @@ namespace SlimJim.Test.Infrastructure
 		public void IgnoresRelativePathWithDifferentCase()
 		{
 			finder.IgnorePatterns("ThEiR");
-			projectFiles = finder.FindAllProjectFiles(new[] { ProjectFileType.CSPROJ }, SampleFileSystemPath);
+			finder.SetProjectTypes(new[] { ProjectFileType.CSPROJ });
+			projectFiles = finder.FindAllProjectFiles(SampleFileSystemPath);
 
 			AssertFilesMatching(new[]
 				{

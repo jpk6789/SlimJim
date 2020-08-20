@@ -15,7 +15,7 @@ namespace SlimJim.Infrastructure
 		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 		private readonly List<Regex> ignorePatterns;
 
-		private string[] _supportedExtensions;
+		private string[] _supportedExtensions = ProjectFileType.AllExtentions.Select(c => c.FileExtention).ToArray();
 
 
 		public ProjectFileFinder()
@@ -24,7 +24,7 @@ namespace SlimJim.Infrastructure
 			IgnorePatterns(@"^\.svn$", @"^\.hg$", @"^\.git$", "^bin$", "^obj$", "ReSharper");
 		}
 
-		public virtual List<FileInfo> FindAllProjectFiles(ProjectFileType[] projectTypes, string startPath)
+		public void SetProjectTypes(ProjectFileType[] projectTypes)
 		{
 			if (projectTypes?.Length > 0)
 			{
@@ -33,10 +33,12 @@ namespace SlimJim.Infrastructure
 			}
 			else
 			{
-				_supportedExtensions = ProjectFileType.AllExtentions.Select(c => c.FileExtention).ToArray();
-				Log.InfoFormat($"No valid project types selected. Use default ones.");
+				Log.WarnFormat($"No valid project types selected.");
 			}
+		}
 
+		public virtual List<FileInfo> FindAllProjectFiles(string startPath)
+		{
 			Log.InfoFormat($"Searching for '{string.Join(", ", _supportedExtensions)}' files at '{startPath}'.");
 
 			var root = new DirectoryInfo(startPath);
