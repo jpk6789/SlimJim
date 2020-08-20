@@ -56,9 +56,9 @@ namespace SlimJim.Infrastructure
 			var files = new List<FileInfo>();
 
 			if (!PathIsIgnored(directory.Name))
-			{
 				SearchDirectoryForProjects(directory, files);
-			}
+			else
+				Log.WarnFormat($"Directory '{directory.Name}' is skipped due to filter rules.");
 
 			return files;
 		}
