@@ -65,8 +65,21 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="HintPathConverterTests.cs" />
     <Compile Include="Infrastructure\ArgsOptionsBuilderTests.cs" />
+    <Compile Include="Infrastructure\CsProjReaderTests.cs" />
+    <Compile Include="Infrastructure\CsProjRepositoryTests.cs" />
+    <Compile Include="Infrastructure\ProjectFileFinderTests.cs" />
+    <Compile Include="Infrastructure\SlnFileRendererTests.cs" />
+    <Compile Include="Model\ProjectPrototypes.cs" />
+    <Compile Include="Model\SlnBuilder\IncludeAllProjectsInSln.cs" />
+    <Compile Include="Model\SlnBuilder\IncludeEfferentAssemblyReferences.cs" />
+    <Compile Include="Model\SlnBuilder\SlnBuilderTestFixture.cs" />
+    <Compile Include="Model\SlnBuilder\SlnBuilderTests.cs" />
+    <Compile Include="Model\SlnGenerationOptionsTests.cs" />
+    <Compile Include="Model\SlnTests.cs" />
     <Compile Include="SampleFiles\SampleFileHelper.cs" />
+    <Compile Include="SlnFileGeneratorTests.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

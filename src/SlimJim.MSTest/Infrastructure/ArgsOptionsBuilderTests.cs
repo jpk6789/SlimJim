@@ -16,13 +16,13 @@ namespace SlimJim.Test.Infrastructure
 		{
 			options = ArgsOptionsBuilder.BuildOptions(new string[0], WorkingDirectory);
 
-			Assert.AreEqual(WorkingDirectory, options.ProjectsRootDirectory);
-			CollectionAssert.AreEqual(new List<string>(), options.TargetProjectNames);
-			Assert.AreEqual(SlnGenerationMode.FullGraph, options.Mode);
-			CollectionAssert.AreEqual(new List<string>(), options.AdditionalSearchPaths);
-			Assert.IsFalse(options.IncludeEfferentAssemblyReferences);
-			Assert.IsFalse(options.ShowHelp);
-			Assert.IsFalse(options.OpenInVisualStudio);
+			Assert.AreEqual(WorkingDirectory, options.ProjectsRootDirectory, "ProjectsRootDirectory");
+			CollectionAssert.AreEqual(new List<string>(), options.TargetProjectNames, "TargetProjectNames");
+			Assert.AreEqual(SlnGenerationMode.FullGraph, options.Mode, "Mode");
+			CollectionAssert.AreEqual(new List<string>(), options.AdditionalSearchPaths, "AdditionalSearchPaths");
+			Assert.IsFalse(options.IncludeEfferentAssemblyReferences, "IncludeEfferentAssemblyReferences");
+			Assert.IsFalse(options.ShowHelp, "ShowHelp");
+			Assert.IsFalse(options.OpenInVisualStudio, "OpenInVisualStudio");
 		}
 
 		[TestMethod]
@@ -174,7 +174,7 @@ namespace SlimJim.Test.Infrastructure
 		{
 			options = ArgsOptionsBuilder.BuildOptions(new[] { "--help" }, WorkingDirectory);
 
-			Assert.IsTrue(options.ShowHelp);
+			Assert.IsTrue(options.ShowHelp, "ShowHelp");
 		}
 
 		[TestMethod]
@@ -182,7 +182,7 @@ namespace SlimJim.Test.Infrastructure
 		{
 			options = ArgsOptionsBuilder.BuildOptions(new[] { "--open" }, WorkingDirectory);
 
-			Assert.IsTrue(options.OpenInVisualStudio);
+			Assert.IsTrue(options.OpenInVisualStudio, "OpenInVisualStudio");
 		}
 
 		[TestMethod]
