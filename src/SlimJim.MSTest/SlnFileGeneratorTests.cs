@@ -53,9 +53,6 @@ namespace SlimJim.Test
 
 			Assert.IsNotNull(gen.ProjectRepository, "Should have created instance of CsProjRepository.");
 			Assert.IsNotNull(gen.SlnWriter, "Should have created instance of CsProjRepository.");
-
-			//Assert.That(gen.ProjectRepository, Is.Not.Null, "Should have created instance of CsProjRepository.");
-			//Assert.That(gen.SlnWriter, Is.Not.Null, "Should have created instance of SlnFileWriter.");
 		}
 
 		[TestMethod]

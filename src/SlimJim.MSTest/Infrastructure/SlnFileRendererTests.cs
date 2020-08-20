@@ -94,7 +94,6 @@ namespace SlimJim.Test.Infrastructure
 			string expectedContents = SampleFileHelper.GetSlnFileContents(solution.Name).Replace("\r\n", "\n").Replace("\n\n", "\n");
 
 			Assert.AreEqual(expectedContents, actualContents);
-			//Assert.That(actualContents, Is.EqualTo(expectedContents));
 		}
 	}
 }

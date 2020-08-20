@@ -28,15 +28,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 												projects.OurProject1,
 												projects.OurProject2
 											}, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[]
-			//											  {
-			//												  projects.MyProject,
-			//												  projects.TheirProject1,
-			//												  projects.TheirProject2,
-			//												  projects.TheirProject3,
-			//												  projects.OurProject1,
-			//												  projects.OurProject2
-			//											  }));
 		}
 	}
 }

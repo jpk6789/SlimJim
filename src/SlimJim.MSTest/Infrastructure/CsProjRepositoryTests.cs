@@ -63,8 +63,6 @@ namespace SlimJim.Test.Infrastructure
 
 			Assert.IsNotNull(repository.Finder, "Should have created instance of CsProjFinder.");
 			Assert.IsNotNull(repository.Reader, "Should have created instance of CsProjReader.");
-			//Assert.That(repository.Finder, Is.Not.Null, "Should have created instance of CsProjFinder.");
-			//Assert.That(repository.Reader, Is.Not.Null, "Should have created instance of CsProjReader.");
 		}
 
 		[TestMethod]
@@ -77,7 +75,6 @@ namespace SlimJim.Test.Infrastructure
 			List<CsProj> projects = repository.LookupCsProjsFromDirectory(options);
 
 			CollectionAssert.AreEqual(new[] { proj1, proj2 }, projects);
-			//Assert.That(projects, Is.EqualTo(new[]{proj1, proj2}));
 		}
 
 		[TestMethod]
@@ -90,7 +87,6 @@ namespace SlimJim.Test.Infrastructure
 			List<CsProj> projects = repository.LookupCsProjsFromDirectory(options);
 
 			CollectionAssert.AreEqual(new[] { proj1 }, projects);
-			//Assert.That(projects, Is.EqualTo(new[] { proj1 }));
 		}
 
 		[TestMethod]

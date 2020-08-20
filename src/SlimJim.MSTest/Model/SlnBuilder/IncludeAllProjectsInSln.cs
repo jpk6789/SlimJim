@@ -13,8 +13,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 
 			CollectionAssert.AreEqual(new[] {projects.MyProject, projects.OurProject1,
 				projects.TheirProject1, projects.Unrelated1}, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject, projects.OurProject1, 
-			//	projects.TheirProject1, projects.Unrelated1}));
 		}
 	}
 }

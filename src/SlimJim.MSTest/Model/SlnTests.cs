@@ -13,7 +13,6 @@ namespace SlimJim.Test.Model
 		public void VersionDefaultsTo2017()
 		{
 			Assert.AreEqual(VisualStudioVersion.VS2017, new Sln("sln").Version);
-			//Assert.That(new Sln("sln").Version, Is.EqualTo(VisualStudioVersion.VS2017));
 		}
 
 		[TestMethod]
@@ -21,8 +20,6 @@ namespace SlimJim.Test.Model
 		{
 			StringAssert.StartsWith(new Sln("sample").Guid, "{");
 			StringAssert.EndsWith(new Sln("sample").Guid, "}");
-			//Assert.That(new Sln("sample").Guid, Does.StartWith("{"));
-			//Assert.That(new Sln("sample").Guid, Does.EndWith("}"));
 		}
 
 		[TestMethod]
@@ -33,7 +30,6 @@ namespace SlimJim.Test.Model
 			sln.AddProjects(new CsProj {Path = "Fake/Example/ProjectB/ProjectB.csproj"});
 
 			Assert.IsNull(sln.Folders, "Folders");
-			//Assert.That(sln.Folders, Is.Null, "Folders");
 		}
 
 		[TestMethod]
@@ -47,8 +43,6 @@ namespace SlimJim.Test.Model
 
 			StringAssert.Equals("ModuleA", folder.FolderName);
 			Assert.AreEqual(2, folder.ContentGuids.Count);
-			//Assert.That(folder.FolderName, Is.EqualTo("ModuleA"));
-			//Assert.That(folder.ContentGuids.Count, Is.EqualTo(2));
 		}
 
 		[TestMethod]
@@ -61,12 +55,8 @@ namespace SlimJim.Test.Model
 			var child = sln.Folders.First(f => f.FolderName == "ModuleA");
 			var parent = sln.Folders.First(f => f.FolderName == "Grouping1");
 
-			IList<string> test = new List<string>();
-
-			Assert.AreEqual(new[] { child.Guid }, parent.ContentGuids);
-			Assert.AreEqual(new[] { proj.Guid }, child.ContentGuids);
-			//Assert.That(parent.ContentGuids, Is.EqualTo(new[] {child.Guid}));
-			//Assert.That(child.ContentGuids, Is.EqualTo(new[] { proj.Guid }));
+			CollectionAssert.AreEqual(new[] { child.Guid }, parent.ContentGuids.ToArray());
+			CollectionAssert.AreEqual(new[] { proj.Guid }, child.ContentGuids.ToArray());
 		}
 
 		[TestMethod]
@@ -77,7 +67,6 @@ namespace SlimJim.Test.Model
 			sln.AddProjects(proj);
 
 			Assert.AreNotEqual(new Folder(), sln.Folders.FirstOrDefault(f => f.FolderName == "ModuleA"), "Folders");
-			//Assert.That(sln.Folders.FirstOrDefault(f => f.FolderName == "ModuleA"), Is.Not.Null, "Folders");
 		}
 	}
 }

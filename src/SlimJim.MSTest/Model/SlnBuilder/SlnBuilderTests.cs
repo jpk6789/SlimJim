@@ -13,7 +13,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName });
 
 			Assert.AreEqual(targetProjectName, solution.Name);
-			//Assert.That(solution.Name, Is.EqualTo(targetProjectName));
 		}
 
 		[TestMethod]
@@ -23,7 +22,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new string[0]);
 
 			Assert.AreEqual(VisualStudioVersion.VS2008, solution.Version);
-			//Assert.That(solution.Version, Is.EqualTo(VisualStudioVersion.VS2008));
 		}
 
 		[TestMethod]
@@ -32,7 +30,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName });
 
 			CollectionAssert.AreEqual(new List<CsProj>(), solution.Projects);
-			//Assert.That(solution.Projects, Is.Empty);
 		}
 
 		[TestMethod]
@@ -41,7 +38,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.Unrelated1);
 
 			CollectionAssert.AreEqual(new List<CsProj>(), solution.Projects);
-			//Assert.That(solution.Projects, Is.Empty);
 		}
 
 		[TestMethod]
@@ -51,7 +47,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject}));
 		}
 
 		[TestMethod]
@@ -60,7 +55,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject}));
 		}
 
 		[TestMethod]
@@ -70,7 +64,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.TheirProject1);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject}));
 		}
 
 		[TestMethod]
@@ -79,7 +72,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.Unrelated1, projects.Unrelated2);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject}));
 		}
 
 		[TestMethod]
@@ -89,7 +81,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.TheirProject1, projects.Unrelated1);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] { projects.MyProject }));
 		}
 
 		[TestMethod]
@@ -103,11 +94,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 				});
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject }, solution.Projects);
-
-			//Assert.That(solution.Projects, Is.EqualTo(new[]
-			//	{
-			//		projects.MyProject
-			//	}));
 		}
 
 		[TestMethod]
@@ -117,7 +103,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.TheirProject1);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject, projects.TheirProject1 }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject, projects.TheirProject1}));
 		}
 
 		[TestMethod]
@@ -134,10 +119,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 				{
 					projects.MyProject, projects.TheirProject1, projects.TheirProject2, projects.TheirProject3
 				}, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[]
-			//	{
-			//		projects.MyProject, projects.TheirProject1, projects.TheirProject2, projects.TheirProject3
-			//	}));
 		}
 
 		[TestMethod]
@@ -147,7 +128,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject}));
 		}
 
 		[TestMethod]
@@ -158,7 +138,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.OurProject1, projects.OurProject2);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject, projects.OurProject1, projects.OurProject2 }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] {projects.MyProject, projects.OurProject1, projects.OurProject2}));
 		}
 
 		[TestMethod]
@@ -169,7 +148,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.MyMultiFrameworkProject35, projects.MyMultiFrameworkProject40);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject, projects.MyMultiFrameworkProject35 }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] { projects.MyProject, projects.MyMultiFrameworkProject35 }));
 		}
 
 		[TestMethod]
@@ -181,7 +159,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.MyMultiFrameworkProject35, projects.MyMultiFrameworkProject40);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject, projects.MyMultiFrameworkProject40 }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] { projects.MyProject, projects.MyMultiFrameworkProject40 }));
 		}
 
 		[TestMethod]
@@ -192,7 +169,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 			GeneratePartialGraphSolution(new[] { targetProjectName }, projects.MyProject, projects.OurProject1, projects.OurProject2);
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject, projects.OurProject1, projects.OurProject2 }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[] { projects.MyProject, projects.OurProject1, projects.OurProject2 }));
 		}
 
 		[TestMethod]
@@ -207,10 +183,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 				});
 
 			CollectionAssert.AreEqual(new[] { projects.MyProject, projects.OurProject1 }, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[]
-			//	{
-			//		projects.MyProject, projects.OurProject1
-			//	}));
 		}
 
 		[TestMethod]
@@ -235,11 +207,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 					projects.MyProject, projects.TheirProject3, projects.Unrelated2,
 					projects.OurProject1, projects.TheirProject1, projects.OurProject2
 				}, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[]
-			//	{
-			//		projects.MyProject, projects.TheirProject3, projects.Unrelated2,
-			//		projects.OurProject1, projects.TheirProject1, projects.OurProject2
-			//	}));
 		}
 
 		[TestMethod]
@@ -259,11 +226,6 @@ namespace SlimJim.Test.Model.SlnBuilder
 					projects.MyProject, projects.TheirProject1, projects.OurProject2,
 					projects.OurProject1, projects.TheirProject2
 				}, solution.Projects);
-			//Assert.That(solution.Projects, Is.EqualTo(new[]
-			//	{
-			//		projects.MyProject, projects.TheirProject1, projects.OurProject2,
-			//		projects.OurProject1, projects.TheirProject2
-			//	}));
 		}
 	}
 }

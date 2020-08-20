@@ -12,7 +12,6 @@ namespace SlimJim.Test
 			var actual = HintPathConverter.CalculateRelativePathToSlimjimPackages(solutionPath, csProjPath);
 
 			StringAssert.Equals(expectedResult, actual);
-			//Assert.That(actual, Is.SamePath(expectedResult));
 		}
 	}
 }
