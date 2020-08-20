@@ -15,6 +15,7 @@ namespace SlimJim.Model
 		private string slnOutputPath;
 		private readonly List<ProjectFileType> projectTypes;
 		private readonly List<string> additionalSearchPaths;
+		private readonly List<string> rootFolderSearchPaths;
 		private readonly List<string> ignoreDirectoryPatterns;
 
 		public SlnGenerationOptions(string workingDirectory)
@@ -22,6 +23,7 @@ namespace SlimJim.Model
 			ProjectsRootDirectory = workingDirectory;
 			projectTypes = new List<ProjectFileType>();
 			additionalSearchPaths = new List<string>();
+			rootFolderSearchPaths = new List<string>();
 			ignoreDirectoryPatterns = new List<string>();
 			TargetProjectNames = new List<string>();
 			VisualStudioVersion = VisualStudioVersion.VS2017;
@@ -63,6 +65,14 @@ namespace SlimJim.Model
 			get
 			{
 				return additionalSearchPaths.ConvertAll(ResolvePath);
+			}
+		}
+
+		public List<string> RootFolderSearchPaths
+		{
+			get
+			{
+				return rootFolderSearchPaths.ConvertAll(ResolvePath);
 			}
 		}
 
@@ -137,6 +147,11 @@ namespace SlimJim.Model
 		public void AddAdditionalSearchPaths(params string[] searchPaths)
 		{
 			additionalSearchPaths.AddRange(searchPaths);
+		}
+
+		public void AddRootFolderSearchPaths(params string[] searchPaths)
+		{
+			rootFolderSearchPaths.AddRange(searchPaths);
 		}
 
 		public void AddTargetProjectNames(params string[] targetProjectNames)

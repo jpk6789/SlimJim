@@ -38,7 +38,18 @@ namespace SlimJim.Infrastructure
 			if (options.ProjectTypes.Length > 0)
 				Finder.SetProjectTypes(options.ProjectTypes);
 
-			List<FileInfo> files = Finder.FindAllProjectFiles(options.ProjectsRootDirectory);
+			List<FileInfo> files = new List<FileInfo>();
+			if (options.RootFolderSearchPaths.Count == 0)
+			{
+				files.AddRange(Finder.FindAllProjectFiles(options.ProjectsRootDirectory));
+			}
+			else
+			{
+				foreach (string path in options.RootFolderSearchPaths)
+				{
+					files.AddRange(Finder.FindAllProjectFiles(path));
+				}
+			}
 
 			foreach (string path in options.AdditionalSearchPaths)
 			{
