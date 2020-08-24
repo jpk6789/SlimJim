@@ -20,17 +20,11 @@ namespace SlimJim.Test.Infrastructure
 			CollectionAssert.AreEqual(new List<string>(), options.TargetProjectNames, "TargetProjectNames");
 			Assert.AreEqual(SlnGenerationMode.FullGraph, options.Mode, "Mode");
 			CollectionAssert.AreEqual(new List<string>(), options.AdditionalSearchPaths, "AdditionalSearchPaths");
+			CollectionAssert.AreEqual(new List<string>(), options.RootFolderSearchPaths, "RootFolderSearchPaths");
+			CollectionAssert.AreEqual(new List<string>(), options.IgnoreDirectoryPatterns, "IgnoreDirectoryPatterns");
 			Assert.IsFalse(options.IncludeEfferentAssemblyReferences, "IncludeEfferentAssemblyReferences");
 			Assert.IsFalse(options.ShowHelp, "ShowHelp");
 			Assert.IsFalse(options.OpenInVisualStudio, "OpenInVisualStudio");
-		}
-
-		[TestMethod]
-		public void SpecifiedProjectsRootDirectory()
-		{
-			options = ArgsOptionsBuilder.BuildOptions(new[] { "--root", WorkingDirectory }, WorkingDirectory);
-
-			Assert.AreEqual(WorkingDirectory, options.ProjectsRootDirectory);
 		}
 
 		[TestMethod]
@@ -43,12 +37,30 @@ namespace SlimJim.Test.Infrastructure
 		}
 
 		[TestMethod]
+		public void SpecifiedProjectsRootDirectory()
+		{
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--root", WorkingDirectory }, WorkingDirectory);
+
+			Assert.AreEqual(WorkingDirectory, options.ProjectsRootDirectory);
+		}
+
+		[TestMethod]
 		public void SpecifiedMultipleTargetProjects()
 		{
 			options = ArgsOptionsBuilder.BuildOptions(new[] { "--target", "MyProject", "--target", "YourProject" }, WorkingDirectory);
 
 			CollectionAssert.AreEqual(new[] { "MyProject", "YourProject" }, options.TargetProjectNames);
 			Assert.AreEqual("MyProject_YourProject", options.SolutionName);
+		}
+
+		[TestMethod]
+		public void SpecifiedRootFolderSearchPaths()
+		{
+			var otherDir = GetSamplePath("OtherProjects");
+			var moreProjects = GetSamplePath("MoreProjects");
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--narrow", otherDir, "--narrow", moreProjects }, WorkingDirectory);
+
+			CollectionAssert.AreEqual(new[] { otherDir, moreProjects }, options.RootFolderSearchPaths);
 		}
 
 		[TestMethod]
@@ -59,6 +71,14 @@ namespace SlimJim.Test.Infrastructure
 			options = ArgsOptionsBuilder.BuildOptions(new[] { "--search", otherDir, "--search", moreProjects }, WorkingDirectory);
 
 			CollectionAssert.AreEqual(new[] { otherDir, moreProjects }, options.AdditionalSearchPaths);
+		}
+
+		[TestMethod]
+		public void IgnoresFolderNames()
+		{
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--ignore", "Folder1", "--ignore", "Folder2" }, WorkingDirectory);
+
+			CollectionAssert.AreEqual(new[] { "Folder1", "Folder2" }, options.IgnoreDirectoryPatterns);
 		}
 
 		[TestMethod]
@@ -119,11 +139,43 @@ namespace SlimJim.Test.Infrastructure
 		}
 
 		[TestMethod]
-		public void InvalidVisualStudioVersionNumber()
+		public void SpecifiedVisualStudioVersion2019()
 		{
-			options = ArgsOptionsBuilder.BuildOptions(new[] { "--version", "dumb" }, WorkingDirectory);
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--version", "2019" }, WorkingDirectory);
 
 			Assert.AreEqual(VisualStudioVersion.VS2019, options.VisualStudioVersion);
+		}
+
+		[TestMethod]
+		public void InvalidVisualStudioVersionNumber()
+		{
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--version", "Invalid" }, WorkingDirectory);
+
+			Assert.AreEqual(VisualStudioVersion.VS2019, options.VisualStudioVersion);
+		}
+
+		[TestMethod]
+		public void SpecifiedSingleProjectType()
+		{
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--projecttype", ".csproj" }, WorkingDirectory);
+
+			CollectionAssert.AreEqual(new[] { ProjectFileType.CSPROJ }, options.ProjectTypes);
+		}
+
+		[TestMethod]
+		public void SpecifiedMultipleProjectType()
+		{
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--projecttype", ".csproj", "--projecttype", ".vcxproj" }, WorkingDirectory);
+
+			CollectionAssert.AreEqual(new[] { ProjectFileType.CSPROJ, ProjectFileType.VCXPROJ }, options.ProjectTypes);
+		}
+
+		[TestMethod]
+		public void InvalidProjectType()
+		{
+			options = ArgsOptionsBuilder.BuildOptions(new[] { "--projecttype", "Invalid" }, WorkingDirectory);
+
+			CollectionAssert.AreEqual(new ProjectFileType[] { }, options.ProjectTypes);
 		}
 
 		[TestMethod]
@@ -152,14 +204,6 @@ namespace SlimJim.Test.Infrastructure
 			options = ArgsOptionsBuilder.BuildOptions(new[] { @"--all" }, WorkingDirectory);
 
 			Assert.IsTrue(options.IncludeEfferentAssemblyReferences);
-		}
-
-		[TestMethod]
-		public void IgnoresFolderNames()
-		{
-			options = ArgsOptionsBuilder.BuildOptions(new[] {"--ignore", "Folder1", "--ignore", "Folder2"}, WorkingDirectory);
-
-			CollectionAssert.AreEqual(new[] { "Folder1", "Folder2" }, options.IgnoreDirectoryPatterns);
 		}
 
 		[TestMethod]
